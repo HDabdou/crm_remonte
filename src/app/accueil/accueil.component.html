@@ -54,7 +54,7 @@
                           <ul class="list-group">
                              <strong>Numero</strong> <li class="list-group-item">{{montant}}</li>
                              <strong>Montant</strong> <li class="list-group-item">{{num}}</li>
-                             <strong>date Operation</strong> <li class="list-group-item">{{listRemonte.dateOp}}</li>
+                             <strong>date Operation</strong> <li class="list-group-item">{{l.dateOp}}</li>
                           </ul>
                          <label class="control-label">Resultat</label>
                          <select class="form-control" type="text" name="result" required
@@ -75,8 +75,8 @@
                       </div>
                      <p></p>
                      <div class="form-group">
-                       <input type="submit" class="btn btn-success" value="" (click)="remonyer(listRemonte.id);modalRef.hide()" value="Valider">
-                     </div>
+                       <input type="submit" class="btn btn-success" value="" (click)="remonter(listRemonte.id);modalRef.hide()" value="Valider">
+                      </div>
                     </form>
               </div>
             </div>

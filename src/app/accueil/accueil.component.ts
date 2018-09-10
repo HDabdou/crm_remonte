@@ -12,13 +12,7 @@ export class AccueilComponent implements OnInit {
   result:string='';
   cause:string='';
   listRemonte:any=[];
-  Remoter =[
-    {phone:'1',service:'depot',operateur:'orange', numero:'779854080', montant:'50000', dateOp:'2018-09-03',etat:0,select:0},
-    {phone:'1',service:'retrait',operateur:'tigo cash', numero:'761554080', montant:'4000', dateOp:'2018-09-10',etat:0,select:0},
-    {phone:'2',service:'depot',operateur:'orange', numero:'779854080', montant:'50000', dateOp:'2018-09-19',etat:0,select:0},
-    {phone:'6',service:'depot',operateur:'orange', numero:'779893480', montant:'50000', dateOp:'2018-09-28',etat:0,select:0},
-    {phone:'1',service:'depot',operateur:'tigo cash', numero:'769857080', montant:'50000', dateOp:'2018-09-04',etat:0,select:0},
-  ]
+  
    
   Result =[
     {etat:'reussi'},
@@ -30,15 +24,9 @@ export class AccueilComponent implements OnInit {
     {info:'Client non abonné'},
     {info:'Solde client insuffisant'},
   ]
-  select(i:number){
-    this.Remoter[i].select=1;
-  }
-  remonterOp(i:number){
-    console.log(this.Remoter[i].etat)
-  }
+
+ 
   valid(i:number){
-    this.Remoter[i].etat=1;
-    this.Remoter[i].select=0;
     this.result=undefined;
     this.cause=undefined;
   }
@@ -53,26 +41,20 @@ export class AccueilComponent implements OnInit {
   montant:any;
   id:any;
   audio:any;
-  remonyer(idR:number){
+  remonter(idR:number){
       idR=this.id;
       this.accueilService.remonter(idR);
-      this.listRemonte.handled=1;
+     
   }
+ 
   getId(i:number){
     this.playNotif=0;
     this.id=this.listRemonte[i].id;
     this.listRemonte[i].handled=1;
+   
   }
   playNotif:number=0;
-  play(){
-    if(this.playNotif=1){
-      this.audio = new Audio();
-      this.audio.src ='./assets/windows-8-sms.mp3';
-      this.audio.play();  
-    }else{
-      this.audio.pause()
-    }
-  }
+  
 
   code:number;
   ngOnInit() {

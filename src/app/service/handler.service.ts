@@ -7,7 +7,7 @@ import {map} from 'rxjs/operators';
 })
 export class HandlerService {
 
-  private url:string='http://localhost/crm_remonte';
+  private url:string='http://sentool.bbstvnet.com/handler/';
   private header :HttpHeaders;
   constructor(private http:HttpClient) {
     this.header = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
