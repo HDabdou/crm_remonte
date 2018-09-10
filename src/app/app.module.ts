@@ -1,16 +1,35 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
+import { Routes, RouterModule} from '@angular/router';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AccueilComponent } from './accueil/accueil.component';
+import { HandlerService } from './service/handler.service';
+import { HttpClientModule} from '@angular/common/http';
 
+const routes:Routes=[
+  {path:'accueil', component:AccueilComponent},
+  {path:'login', component:ConnexionComponent},
+  {path:'',redirectTo:'/login' ,pathMatch:'full'},
+];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConnexionComponent,
+    AccueilComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(routes),
+    ModalModule.forRoot(),
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    HandlerService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
