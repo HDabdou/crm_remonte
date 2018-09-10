@@ -58,18 +58,33 @@ export class AccueilComponent implements OnInit {
       this.accueilService.remonter(idR);
       this.listRemonte.handled=1;
   }
+  getId(i:number){
+    this.playNotif=0;
+    this.id=this.listRemonte[i].id;
+    this.listRemonte[i].handled=1;
+  }
+  playNotif:number=0;
+  play(){
+    if(this.playNotif=1){
+      this.audio = new Audio();
+      this.audio.src ='./assets/windows-8-sms.mp3';
+      this.audio.play();  
+    }else{
+      this.audio.pause()
+    }
+  }
+
+  code:number;
   ngOnInit() {
     
     setInterval(() => {
-      this.accueilService.callPeriodicHandler().then( res => {console.log(res['message']);
-      if(res['code']==1)
+      this.accueilService.callPeriodicHandler().then( res => {
+      console.log(res['message']+"\n");
+      console.log(res['code']);
+      this.code=res['code'];
+      if(this.code == 1)
       {
         this.listRemonte=res['message'];
-        /* if(res['code']==1){
-          this.requete=res['message'].requette.split("/",1);
-           //this.numero=this.listRemonte.requette.split("/");
-           //this.num =this.numero[1],this.montant =this.numero[2]
-         }*/
          for(let i of res['message']){
            console.log(i.requette)
            this.requete=i.requette.split("/",1);
@@ -78,18 +93,15 @@ export class AccueilComponent implements OnInit {
            this.montant =this.numero[2];
    
          }
-         
-          this.id=this.listRemonte.id, console.log(this.num),this.audio = new Audio();
-         this.audio.src ='./assets/windows-8-sms.mp3';
-         console.log(res['code'])
-         if(res['code']==1){
-           this.audio.play();
-         }
+         this.playNotif=1;
+         this.play();
       }
-     
+      
       } );
       
     }, 10000); 
+
+    
   }
 
 }

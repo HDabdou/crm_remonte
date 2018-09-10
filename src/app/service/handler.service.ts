@@ -15,9 +15,9 @@ export class HandlerService {
 
   
   public callPeriodicHandler(): Promise<any>{
-    //let params="requestParam="+JSON.stringify({requestParam : requete});
+    let params="requestParam="+(new Date()).toString();
     let link=this.url+"/periodicHandler.php";
-    return this.http.post(link,{headers:this.header}).toPromise().then( res => {return res} ).catch(error => {console.log(error); return 'bad' });
+    return this.http.post(link,params,{headers:this.header}).toPromise().then( res => {console.log(res); return res} ).catch(error => {console.log(error); return 'bad' });
   }
 
   public remonter(id:any): Promise<any>{
