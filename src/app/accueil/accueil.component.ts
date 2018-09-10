@@ -76,7 +76,7 @@ export class AccueilComponent implements OnInit {
 
   code:number;
   ngOnInit() {
-    
+   
     setInterval(() => {
       this.accueilService.callPeriodicHandler().then( res => {
       console.log(res['message']+"\n");
@@ -94,7 +94,13 @@ export class AccueilComponent implements OnInit {
    
          }
          this.playNotif=1;
-         this.play();
+        
+      }
+
+      if(this.playNotif== 1){
+        this.audio = new Audio();
+        this.audio.src ='./assets/windows-8-sms.mp3';
+        this.audio.play();  
       }
       
       } );
