@@ -45,7 +45,7 @@ export class AccueilComponent implements OnInit {
   remonter(idR:number){
       idR=this.id;
       this.accueilService.remonter(idR);
-      this.dateOp=null;
+     
   }
  
   getId(i:number){
@@ -57,6 +57,11 @@ export class AccueilComponent implements OnInit {
   }
   playNotif:number=0;
   
+  numCOM:any;
+  mttCOM:any;
+
+  numCTC:any;
+  mttCTC:any;
 
   code:number;
   ngOnInit() {
@@ -75,8 +80,14 @@ export class AccueilComponent implements OnInit {
            this.numero=i.requette.split("/");
            this.num =this.numero[1];
            this.montant =this.numero[2];
-   
-         }
+          
+           this.numCOM = this.numero[6];
+           this.mttCOM = this.numero[7];
+
+           this.numCTC = this.numero[4];
+           this.mttCTC = this.numero[5];
+
+          }
          this.playNotif=1;
         
       }
@@ -93,5 +104,67 @@ export class AccueilComponent implements OnInit {
 
     
   }
+  getInfo(row, type){
+    if(type == "requete"){
+      return row.requette.split("/",1);
+    }
+    if(type == "numero"){
+        if(row.service== "orange money"){
+          if(row.requette.split("/")[0] == '1'){
+            return row.requette.split("/")[2];
+          }
+          if(row.requette.split("/")[0] == '2'){
+          return row.requette.split("/")[1];
+        }
+        if(row.requette.split("/")[0] == '3'){
+          return row.requette.split("/")[6];
+        }
+        }
+        if(row.service== "tigo cash"){
+          if(row.requette.split("/")[0] == '2'){
+            return row.requette.split("/")[1];
+          }
+          if(row.requette.split("/")[0] == '3'){
+            return row.requette.split("/")[1];
+          }
+          if(row.requette.split("/")[0] == '4'){
+            return row.requette.split("/")[4];
+          }
+        }    
+     }
+
+    if(type == "montant"){
+      if(row.service== "orange money"){
+        if(row.requette.split("/")[0] == '1'){
+          return row.requette.split("/")[1];
+        }
+        if(row.requette.split("/")[0] == '2'){
+         return row.requette.split("/")[2];
+       }
+       if(row.requette.split("/")[0] == '3'){
+         return row.requette.split("/")[7];
+       }
+      }
+       
+       if(row.service== "tigo cash"){
+        if(row.requette.split("/")[0] == '2'){
+          return row.requette.split("/")[2];
+        }
+        if(row.requette.split("/")[0] == '3'){
+         return row.requette.split("/")[2];
+       }
+       if(row.requette.split("/")[0] == '4'){
+         return row.requette.split("/")[5];
+       } 
+      }
+     
+     }
+     return "erreur";
+    }
+   
+
+
+
+
 
 }
