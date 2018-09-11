@@ -41,15 +41,17 @@ export class AccueilComponent implements OnInit {
   montant:any;
   id:any;
   audio:any;
+  dateOp:any;
   remonter(idR:number){
       idR=this.id;
       this.accueilService.remonter(idR);
-     
+      this.dateOp=null;
   }
  
   getId(i:number){
     this.playNotif=0;
     this.id=this.listRemonte[i].id;
+    this.dateOp = this.listRemonte[i].dateOp;
     this.listRemonte[i].handled=1;
    
   }

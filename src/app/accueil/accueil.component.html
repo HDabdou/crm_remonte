@@ -20,19 +20,21 @@
                      <tr *ngFor="let l of listRemonte; let i=index">
                             <td  *ngIf="l.handled == 0"><strong>{{l.id}}</strong></td>
                             <td  *ngIf="l.handled == 0"><strong>{{l.phone}}</strong></td>
-                            <td *ngIf="requete==1 && l.handled == 0"><strong> depot</strong></td>
-                            <td *ngIf="requete==2 && l.handled == 0"><strong>retrait</strong></td>
+                            <td *ngIf="requete==1 && l.service == 'orange money' && l.handled == 0"><strong> depot</strong></td>
+                            <td *ngIf="requete==2 && l.service == 'orange money' && l.handled == 0"><strong>retrait</strong></td>
+                            <td *ngIf="requete==2 && l.service == 'tigo cash' && l.handled == 0"><strong> depot</strong></td>
+                            <td *ngIf="requete==3 && l.service == 'tigo cash' && l.handled == 0"><strong>retrait</strong></td>
                             <td  *ngIf="l.handled == 0" ><strong> {{l.service}}</strong></td>
                             <td *ngIf="requete==1 && l.service == 'orange money' && l.handled == 0"><strong>{{montant}}</strong></td>
                             <td *ngIf="requete==1 && l.service == 'orange money' && l.handled == 0"><strong>{{num}}</strong></td>
                             <td *ngIf="requete==2 && l.service == 'orange money' && l.handled == 0"><strong>{{num}}</strong></td>
                             <td *ngIf="requete==2 && l.service == 'orange money' && l.handled == 0"><strong>{{montant}}</strong></td>
-                            <td *ngIf="requete==1 && l.service == 'tigo cash' && l.handled == 0"><strong>{{montant}}</strong></td>
-                            <td *ngIf="requete==1 && l.service == 'tigo cash' && l.handled == 0"><strong>{{num}}</strong></td>
+                            <td *ngIf="requete==3 && l.service == 'tigo cash' && l.handled == 0"><strong>{{montant}}</strong></td>
+                            <td *ngIf="requete==3 && l.service == 'tigo cash' && l.handled == 0"><strong>{{num}}</strong></td>
                             <td *ngIf="requete==2 && l.service == 'tigo cash' && l.handled == 0"><strong>{{montant}}</strong></td>
                             <td *ngIf="requete==2 && l.service == 'tigo cash' && l.handled == 0"><strong>{{num}}</strong></td>
                             <td  *ngIf="l.handled == 0"><strong> {{l.dateOp}}</strong></td>
-                            <td *ngIf="requete==1 || requete==2 && l.handled == 0" ><a class="btn btn-primary"  (click)="getId(i);openModal(template)" style="margin-left: 5%;cursor: pointer;"  title="Traiter" ><strong> Traiter</strong></a>
+                            <td *ngIf="requete==1 || requete==2 || requete==3 && l.handled == 0" ><a class="btn btn-primary"  (click)="getId(i);openModal(template)" style="margin-left: 5%;cursor: pointer;"  title="Traiter" ><strong> Traiter</strong></a>
                             </td>
                   </tbody>
                        
@@ -54,7 +56,7 @@
                           <ul class="list-group">
                              <strong>Numero</strong> <li class="list-group-item">{{montant}}</li>
                              <strong>Montant</strong> <li class="list-group-item">{{num}}</li>
-                             <strong>date Operation</strong> <li class="list-group-item">{{l.dateOp}}</li>
+                             <strong>date Operation</strong> <li class="list-group-item">{{dateOp}}</li>
                           </ul>
                          <label class="control-label">Resultat</label>
                          <select class="form-control" type="text" name="result" required
