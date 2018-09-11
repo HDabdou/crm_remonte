@@ -9,8 +9,8 @@ import { HandlerService } from '../service/handler.service';
 })
 export class AccueilComponent implements OnInit {
 
-  result:string='';
-  cause:string='';
+  reponse:string='';
+  message:string='';
   listRemonte:any=[];
   
    
@@ -26,10 +26,10 @@ export class AccueilComponent implements OnInit {
   ]
 
  
-  valid(i:number){
-    this.result=undefined;
-    this.cause=undefined;
-  }
+  /*valid(i:number){
+    this.reponse=undefined;
+    this.reponse=undefined;
+  }*/
   modalRef: BsModalRef;
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
@@ -44,24 +44,26 @@ export class AccueilComponent implements OnInit {
   dateOp:any;
   remonter(idR:number){
       idR=this.id;
-      this.accueilService.remonter(idR);
+      console.log(idR,this.numFile,this.reponse,this.message)
+      this.accueilService.remonter(idR,this.numFile,this.reponse,this.message);
      
   }
- 
+  numFile:any;
   getId(i:number){
     this.playNotif=0;
     this.id=this.listRemonte[i].id;
     this.dateOp = this.listRemonte[i].dateOp;
     this.listRemonte[i].handled=1;
-   
+    this.numFile = this.listRemonte[i].numfile;
+    this.numeroTraiter = this.getInfo(this.listRemonte[i],"numero");
+    this.montantTraiter = this.getInfo(this.listRemonte[i],"montant");
+    this.reponse=null;
+    this.message = null;
   }
   playNotif:number=0;
   
-  numCOM:any;
-  mttCOM:any;
-
-  numCTC:any;
-  mttCTC:any;
+  numeroTraiter:any;
+  montantTraiter:any;
 
   code:number;
   ngOnInit() {
@@ -74,20 +76,6 @@ export class AccueilComponent implements OnInit {
       if(this.code == 1)
       {
         this.listRemonte=res['message'];
-         for(let i of res['message']){
-           console.log(i.requette)
-           this.requete=i.requette.split("/",1);
-           this.numero=i.requette.split("/");
-           this.num =this.numero[1];
-           this.montant =this.numero[2];
-          
-           this.numCOM = this.numero[6];
-           this.mttCOM = this.numero[7];
-
-           this.numCTC = this.numero[4];
-           this.mttCTC = this.numero[5];
-
-          }
          this.playNotif=1;
         
       }

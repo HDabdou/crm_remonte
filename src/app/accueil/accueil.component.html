@@ -68,21 +68,21 @@
                       <div class="form-group">
                           
                           <ul class="list-group">
-                             <strong>Numero</strong> <li class="list-group-item">{{montant}}</li>
-                             <strong>Montant</strong> <li class="list-group-item">{{num}}</li>
+                             <strong>Numero</strong> <li class="list-group-item">{{montantTraiter}}</li>
+                             <strong>Montant</strong> <li class="list-group-item">{{numeroTraiter}}</li>
                              <strong>date Operation</strong> <li class="list-group-item">{{dateOp}}</li>
                           </ul>
-                         <label class="control-label">Resultat</label>
-                         <select class="form-control" type="text" name="result" required
-                         [(ngModel)]="result"
+                         <label class="control-label">Reponse</label>
+                         <select class="form-control" type="text" name="reponse" required
+                         [(ngModel)]="reponse"
                          #name="ngModel"> 
                             <option value="">---------Selectionné--------</option>
                             <option *ngFor="let c of Result" >{{c.etat}}</option>
                         </select> 
-                        <div *ngIf="result=='Echec'">
-                                <label class="control-label">Cause</label>
-                                <select class="form-control" type="text" name="cause" required
-                                [(ngModel)]="cause"
+                        <div *ngIf="reponse =='Echec'">
+                                <label class="control-label">Message</label>
+                                <select class="form-control" type="text" name="message" required
+                                [(ngModel)]="message"
                                 #name="ngModel"> 
                                    <option value="">---------Selectionné--------</option>
                                    <option *ngFor="let c of Echec" >{{c.info}}</option>

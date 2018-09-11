@@ -21,10 +21,13 @@ export class HandlerService {
     return this.http.post(link,params,{headers:this.header}).toPromise().then( res => {console.log(res); return res} ).catch(error => {console.log(error); return 'bad' });
   }
 
-  public remonter(id:any): Promise<any>{
-    let params="id="+id;
+  public remonter(id,numFile,reponse,message): Promise<any>{
+    //let params="id="+id;
+    let data = JSON.stringify({id:id,numFile:numFile,reponse:reponse,message:message});
+    let params ='param='+data;
     let link=this.url+"/remonter.php";
     return this.http.post(link,params,{headers:this.header}).toPromise().then( res => {console.log(res);return res} ).catch(error => {console.log(error);return 'bad' });
   }
  
+
 }
