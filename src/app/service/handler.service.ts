@@ -8,6 +8,7 @@ import {map} from 'rxjs/operators';
 export class HandlerService {
 
   private url:string='http://sentool.bbstvnet.com/handler/';
+  
   //private url:string='http://localhost/crm_remonte/';
   private header :HttpHeaders;
   constructor(private http:HttpClient) {
