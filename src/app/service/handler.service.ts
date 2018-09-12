@@ -7,7 +7,7 @@ import {map} from 'rxjs/operators';
 })
 export class HandlerService {
 
-   private url:string='http://sentool.bbstvnet.com/handler/';
+  private url:string='http://sentool.bbstvnet.com/handler/';
   //private url:string='http://localhost/crm_remonte/';
   private header :HttpHeaders;
   constructor(private http:HttpClient) {
@@ -21,9 +21,9 @@ export class HandlerService {
     return this.http.post(link,params,{headers:this.header}).toPromise().then( res => {console.log(res); return res} ).catch(error => {console.log(error); return 'bad' });
   }
 
-  public remonter(id,numFile,reponse,message): Promise<any>{
+  public remonter(id,numFile,reponse,message,operateur,phone): Promise<any>{
     //let params="id="+id;
-    let data = JSON.stringify({id:id,numFile:numFile,reponse:reponse,message:message});
+    let data = JSON.stringify({id:id,numFile:numFile,reponse:reponse,message:message,operateur:operateur,phone:phone});
     let params ='param='+data;
     let link=this.url+"/remonter.php";
     return this.http.post(link,params,{headers:this.header}).toPromise().then( res => {console.log(res);return res} ).catch(error => {console.log(error);return 'bad' });

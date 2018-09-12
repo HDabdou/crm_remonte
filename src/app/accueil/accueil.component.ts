@@ -42,10 +42,12 @@ export class AccueilComponent implements OnInit {
   id:any;
   audio:any;
   dateOp:any;
+  operateur:any;
+  phone:any;
   remonter(idR:number){
       idR=this.id;
       console.log(idR,this.numFile,this.reponse,this.message)
-      this.accueilService.remonter(idR,this.numFile,this.reponse,this.message);
+      this.accueilService.remonter(idR,this.numFile,this.reponse,this.message,this.operateur,this.phone);
      
   }
   numFile:any;
@@ -55,6 +57,8 @@ export class AccueilComponent implements OnInit {
     this.dateOp = this.listRemonte[i].dateOp;
     this.listRemonte[i].handled=1;
     this.numFile = this.listRemonte[i].numfile;
+    this.operateur = this.listRemonte[i].service;
+    this.phone = this.listRemonte[i].phone;
     this.numeroTraiter = this.getInfo(this.listRemonte[i],"numero");
     this.montantTraiter = this.getInfo(this.listRemonte[i],"montant");
     this.reponse=null;
@@ -92,8 +96,19 @@ export class AccueilComponent implements OnInit {
 
     
   }
+  size:number=0;
   getInfo(row, type){
     if(type == "requete"){
+     this.size= row.requette.split("/").length;
+      if(this.size == 2 && row.service== "AirTime-Tigo"){
+        return "IZI";
+      }
+      if(this.size == 2 && row.service== "AirTime-Orange"){
+        return "SEDDO";
+      }
+      if(this.size == 2 && row.service== "AirTime-Expresso"){
+        return "YEKALMA";
+      }
       return row.requette.split("/",1);
     }
     if(type == "numero"){
@@ -102,12 +117,17 @@ export class AccueilComponent implements OnInit {
             return row.requette.split("/")[2];
           }
           if(row.requette.split("/")[0] == '2'){
+            return row.requette.split("/")[1];
+          }
+          if(row.requette.split("/")[0] == '3'){
+            return row.requette.split("/")[6];
+          }
+        }
+        if(row.requette.split("/").length == 2 && row.service== "AirTime-Orange" || row.service== "AirTime-Tigo" || row.service== "AirTime-Expresso"){
           return row.requette.split("/")[1];
         }
-        if(row.requette.split("/")[0] == '3'){
-          return row.requette.split("/")[6];
-        }
-        }
+        
+
         if(row.service== "tigo cash"){
           if(row.requette.split("/")[0] == '2'){
             return row.requette.split("/")[1];
@@ -122,6 +142,9 @@ export class AccueilComponent implements OnInit {
      }
 
     if(type == "montant"){
+      if(row.requette.split("/").length == 2 && row.service== "AirTime-Orange" || row.service== "AirTime-Tigo" || row.service== "AirTime-Expresso"){
+        return row.requette.split("/")[0];
+      }
       if(row.service== "orange money"){
         if(row.requette.split("/")[0] == '1'){
           return row.requette.split("/")[1];

@@ -8,8 +8,8 @@
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Phone</th>
-                  <th scope="col">Service</th>
                   <th scope="col">operateur</th>
+                  <th scope="col">Service</th>
                   <th scope="col">Numéro</th>
                   <th scope="col">Montant</th>
                   <th scope="col">Date operation</th>
@@ -20,11 +20,23 @@
                      <tr *ngFor="let l of listRemonte; let i=index">
                             <td  *ngIf="l.handled == 0"><strong>{{l.id}}</strong></td>
                             <td  *ngIf="l.handled == 0"><strong>{{l.phone}}</strong></td>
+                            <td  *ngIf="l.handled == 0" ><strong> {{l.service}}</strong></td>
                             <td *ngIf="l.service == 'orange money' && l.handled == 0"><strong *ngIf="getInfo(l,'requete')=='1'"> depot</strong><strong *ngIf="getInfo(l,'requete')=='2'">retrait</strong><strong *ngIf="getInfo(l,'requete')=='3'">retrait avec code</strong></td>
 
                             <td *ngIf="l.service == 'tigo cash' && l.handled == 0"><strong *ngIf="getInfo(l,'requete')=='2'"> depot</strong><strong *ngIf="getInfo(l,'requete')=='3'">retrait</strong><strong *ngIf="getInfo(l,'requete')=='4'">retrait avec code</strong></td>
 
-                            <td  *ngIf="l.handled == 0" ><strong> {{l.service}}</strong></td>
+                            <td *ngIf="l.service == 'AirTime-Tigo' && l.handled == 0"><strong > {{getInfo(l,'requete')}}</strong></td>
+                            <td *ngIf="l.service == 'AirTime-Orange' && l.handled == 0"><strong > {{getInfo(l,'requete')}}</strong></td>
+                            <td *ngIf="l.service == 'AirTime-Expresso' && l.handled == 0"><strong > {{getInfo(l,'requete')}}</strong></td>
+
+                            <td *ngIf=" l.service == 'AirTime-Orange' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
+                            <td *ngIf=" l.service == 'AirTime-Orange' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
+
+                            <td *ngIf=" l.service == 'AirTime-Tigo' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
+                            <td *ngIf=" l.service == 'AirTime-Tigo' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
+
+                            <td *ngIf=" l.service == 'AirTime-Expresso' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
+                            <td *ngIf=" l.service == 'AirTime-Expresso' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
                             
                             <td *ngIf="getInfo(l,'requete')=='1' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
                             <td *ngIf="getInfo(l,'requete')=='1' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
@@ -48,7 +60,7 @@
                             <td *ngIf="getInfo(l,'requete')=='4' && l.service == 'tigo cash' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
 
                             <td  *ngIf="l.handled == 0"><strong> {{l.dateOp}}</strong></td>
-                            <td *ngIf="l.handled == 0" ><a  class="btn btn-primary"  (click)="getId(i);openModal(template)" style="margin-left: 5%;cursor: pointer;"  title="Traiter" ><strong> Traiter</strong></a>
+                            <td *ngIf="l.handled == 0" ><a  class="btn btn-primary"  (click)="getId(i);openModal(template)" style="margin-left: 5%;cursor: pointer;"  title="Traiter" ><strong style="color: white"> Traiter</strong></a>
                             </td>
                   </tbody>
                        
