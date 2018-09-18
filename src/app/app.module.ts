@@ -9,8 +9,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { HandlerService } from './service/handler.service';
 import { HttpClientModule} from '@angular/common/http';
 
-const routes:Routes=[
-  {path:'accueil', component:AccueilComponent},
+const routes:Routes=[  {path:'accueil', component:AccueilComponent},
   {path:'login', component:ConnexionComponent},
   {path:'',redirectTo:'/login' ,pathMatch:'full'},
 ];

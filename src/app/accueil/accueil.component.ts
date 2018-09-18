@@ -12,6 +12,7 @@ export class AccueilComponent implements OnInit {
   reponse:string='';
   message:string='';
   listRemonte:any=[];
+  indice:number;
   
    
   Result =[
@@ -48,14 +49,15 @@ export class AccueilComponent implements OnInit {
       idR=this.id;
       console.log(idR,this.numFile,this.reponse,this.message)
       this.accueilService.remonter(idR,this.numFile,this.reponse,this.message,this.operateur,this.phone);
-     
+      this.listRemonte[this.indice].handled=1;
   }
   numFile:any;
   getId(i:number){
+    this.indice = i;
     this.playNotif=0;
     this.id=this.listRemonte[i].id;
     this.dateOp = this.listRemonte[i].dateOp;
-    this.listRemonte[i].handled=1;
+    //this.listRemonte[i].handled=1;
     this.numFile = this.listRemonte[i].numfile;
     this.operateur = this.listRemonte[i].service;
     this.phone = this.listRemonte[i].phone;
@@ -81,16 +83,13 @@ export class AccueilComponent implements OnInit {
       {
         this.listRemonte=res['message'];
          this.playNotif=1;
-        
       }
-
       if(this.playNotif== 1){
         this.audio = new Audio();
         this.audio.src ='./assets/windows-8-sms.mp3';
         this.audio.play();  
       }
-      
-      } );
+    } );
       
     }, 10000); 
 
