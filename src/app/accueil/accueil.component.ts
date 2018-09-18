@@ -61,8 +61,13 @@ export class AccueilComponent implements OnInit {
     this.numFile = this.listRemonte[i].numfile;
     this.operateur = this.listRemonte[i].service;
     this.phone = this.listRemonte[i].phone;
-    this.numeroTraiter = this.getInfo(this.listRemonte[i],"numero");
-    this.montantTraiter = this.getInfo(this.listRemonte[i],"montant");
+    if(this.listRemonte[i].requette.indexOf('/') > -1){
+      this.numeroTraiter = this.getInfo(this.listRemonte[i],"numero");
+      this.montantTraiter = this.getInfo(this.listRemonte[i],"montant");  
+    }else{
+      this.numeroTraiter = this.getInfo(this.listRemonte[i],"infoClient");
+      this.montantTraiter = this.getInfo(this.listRemonte[i],"montant");  
+    }
     this.reponse=null;
     this.message = null;
   }
@@ -72,6 +77,8 @@ export class AccueilComponent implements OnInit {
   montantTraiter:any;
 
   code:number;
+  requette:any;
+  result:any;
   ngOnInit() {
    
     setInterval(() => {
@@ -80,11 +87,11 @@ export class AccueilComponent implements OnInit {
       console.log(res['code']);
       this.code=res['code'];
       if(this.code == 1)
-      {
+      { 
         this.listRemonte=res['message'];
-         this.playNotif=1;
+        this.playNotif=1;
       }
-      if(this.playNotif== 1){
+      if(this.playNotif == 1){
         this.audio = new Audio();
         this.audio.src ='./assets/windows-8-sms.mp3';
         this.audio.play();  
@@ -97,78 +104,92 @@ export class AccueilComponent implements OnInit {
   }
   size:number=0;
   getInfo(row, type){
-    if(type == "requete"){
-     this.size= row.requette.split("/").length;
-      if(this.size == 2 && row.service== "AirTime-Tigo"){
-        return "IZI";
-      }
-      if(this.size == 2 && row.service== "AirTime-Orange"){
-        return "SEDDO";
-      }
-      if(this.size == 2 && row.service== "AirTime-Expresso"){
-        return "YEKALMA";
-      }
-      return row.requette.split("/",1);
-    }
-    if(type == "numero"){
-        if(row.service== "orange money"){
-          if(row.requette.split("/")[0] == '1'){
+    if(row.requette.indexOf('/') > -1){
+      if(type == "requete"){
+        this.size= row.requette.split("/").length;
+         if(this.size == 2 && row.service== "AirTime-Tigo"){
+           return "IZI";
+         }
+         if(this.size == 2 && row.service== "AirTime-Orange"){
+           return "SEDDO";
+         }
+         if(this.size == 2 && row.service== "AirTime-Expresso"){
+           return "YAKALMA";
+         }
+         return row.requette.split("/",1);
+       }
+       if(type == "numero"){
+           if(row.service== "orange money"){
+             if(row.requette.split("/")[0] == '1'){
+               return row.requette.split("/")[2];
+             }
+             if(row.requette.split("/")[0] == '2'){
+               return row.requette.split("/")[1];
+             }
+             if(row.requette.split("/")[0] == '3'){
+               return row.requette.split("/")[6];
+             }
+           }
+           if(row.requette.split("/").length == 2 && row.service== "AirTime-Orange" || row.service== "AirTime-Tigo" || row.service== "AirTime-Expresso"){
+             return row.requette.split("/")[1];
+           }
+           
+   
+           if(row.service== "tigo cash"){
+             if(row.requette.split("/")[0] == '2'){
+               return row.requette.split("/")[1];
+             }
+             if(row.requette.split("/")[0] == '3'){
+               return row.requette.split("/")[1];
+             }
+             if(row.requette.split("/")[0] == '4'){
+               return row.requette.split("/")[4];
+             }
+           }    
+        }
+   
+       if(type == "montant"){
+         if(row.requette.split("/").length == 2 && row.service== "AirTime-Orange" || row.service== "AirTime-Tigo" || row.service== "AirTime-Expresso"){
+           return row.requette.split("/")[0];
+         }
+         if(row.service== "orange money"){
+           if(row.requette.split("/")[0] == '1'){
+             return row.requette.split("/")[1];
+           }
+           if(row.requette.split("/")[0] == '2'){
             return row.requette.split("/")[2];
           }
-          if(row.requette.split("/")[0] == '2'){
-            return row.requette.split("/")[1];
-          }
           if(row.requette.split("/")[0] == '3'){
-            return row.requette.split("/")[6];
+            return row.requette.split("/")[7];
           }
-        }
-        if(row.requette.split("/").length == 2 && row.service== "AirTime-Orange" || row.service== "AirTime-Tigo" || row.service== "AirTime-Expresso"){
-          return row.requette.split("/")[1];
-        }
+         }
+          
+          if(row.service== "tigo cash"){
+           if(row.requette.split("/")[0] == '2'){
+             return row.requette.split("/")[2];
+            }
+            if(row.requette.split("/")[0] == '3'){
+            return row.requette.split("/")[2];
+            }
+            if(row.requette.split("/")[0] == '4'){
+              return row.requette.split("/")[5];
+            } 
+          }
         
-
-        if(row.service== "tigo cash"){
-          if(row.requette.split("/")[0] == '2'){
-            return row.requette.split("/")[1];
-          }
-          if(row.requette.split("/")[0] == '3'){
-            return row.requette.split("/")[1];
-          }
-          if(row.requette.split("/")[0] == '4'){
-            return row.requette.split("/")[4];
-          }
-        }    
-     }
-
-    if(type == "montant"){
-      if(row.requette.split("/").length == 2 && row.service== "AirTime-Orange" || row.service== "AirTime-Tigo" || row.service== "AirTime-Expresso"){
-        return row.requette.split("/")[0];
-      }
-      if(row.service== "orange money"){
-        if(row.requette.split("/")[0] == '1'){
-          return row.requette.split("/")[1];
         }
-        if(row.requette.split("/")[0] == '2'){
-         return row.requette.split("/")[2];
-       }
-       if(row.requette.split("/")[0] == '3'){
-         return row.requette.split("/")[7];
-       }
-      }
-       
-       if(row.service== "tigo cash"){
-        if(row.requette.split("/")[0] == '2'){
-          return row.requette.split("/")[2];
+   
+    }else{
+        if(type == 'service'){
+          return JSON.parse(row.requette).service;
         }
-        if(row.requette.split("/")[0] == '3'){
-         return row.requette.split("/")[2];
-       }
-       if(row.requette.split("/")[0] == '4'){
-         return row.requette.split("/")[5];
-       } 
+        if(type == 'infoClient'){
+          return JSON.parse(row.requette).infoClient;
+        }
+        if(type == 'montant'){
+          return JSON.parse(row.requette).montant;
+        }
+
       }
-     
-     }
      return "erreur";
     }
    

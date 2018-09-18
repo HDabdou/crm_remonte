@@ -27,7 +27,10 @@
 
                             <td *ngIf="l.service == 'AirTime-Tigo' && l.handled == 0"><strong > {{getInfo(l,'requete')}}</strong></td>
                             <td *ngIf="l.service == 'AirTime-Orange' && l.handled == 0"><strong > {{getInfo(l,'requete')}}</strong></td>
-                            <td *ngIf="l.service == 'AirTime-Expresso' && l.handled == 0"><strong > {{getInfo(l,'requete')}}</strong></td>
+                           <!--wizall-->
+                           <td *ngIf="l.service == 'wizall' && l.handled == 0"><strong > {{getInfo(l,'service')}}</strong></td>
+                            <!--wizall-->
+                           <td *ngIf="l.service == 'emoney' && l.handled == 0"><strong > {{getInfo(l,'service')}}</strong></td>
 
                             <td *ngIf=" l.service == 'AirTime-Orange' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
                             <td *ngIf=" l.service == 'AirTime-Orange' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
@@ -37,6 +40,12 @@
 
                             <td *ngIf=" l.service == 'AirTime-Expresso' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
                             <td *ngIf=" l.service == 'AirTime-Expresso' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
+                            <!--wizall-->
+                            <td *ngIf=" l.service == 'wizall' && l.handled == 0"><strong>{{getInfo(l,"infoClient")}}</strong></td>
+                            <td *ngIf=" l.service == 'wizall' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
+                            <!--emoney-->
+                            <td *ngIf=" l.service == 'emoney' && l.handled == 0"><strong>{{getInfo(l,"infoClient")}}</strong></td>
+                            <td *ngIf=" l.service == 'emoney' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
                             
                             <td *ngIf="getInfo(l,'requete')=='1' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
                             <td *ngIf="getInfo(l,'requete')=='1' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
@@ -80,8 +89,8 @@
                       <div class="form-group">
                           
                           <ul class="list-group">
-                             <strong>Numero</strong> <li class="list-group-item">{{montantTraiter}}</li>
-                             <strong>Montant</strong> <li class="list-group-item">{{numeroTraiter}}</li>
+                             <strong>Numero</strong> <li class="list-group-item">{{numeroTraiter}}</li>
+                             <strong>Montant</strong> <li class="list-group-item">{{montantTraiter}}</li>
                              <strong>date Operation</strong> <li class="list-group-item">{{dateOp}}</li>
                           </ul>
                          <label class="control-label">Reponse</label>
