@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccueilComponent } from '../accueil/accueil.component';
+import { HandlerService } from '../service/handler.service';
 
 @Component({
   selector: 'app-connexion',
@@ -24,7 +25,7 @@ export class ConnexionComponent implements OnInit {
       
    
   }
-  constructor(private router: Router) { }
+  constructor(private router: Router,public accueilService:HandlerService) { }
 
   ngOnInit() {
   }

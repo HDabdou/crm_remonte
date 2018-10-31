@@ -1,34 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders} from '@angular/common/http';
-import { Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Http, Headers} from "@angular/http";
+
 @Injectable({
   providedIn: 'root'
 })
 export class HandlerService {
+  constructor(private http:Http) {
+    this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+  }
+  private url = "http://localhost/canal_backend/";
 
-  //private url:string='http://sentool.bbstvnet.com/handler/';
-  
-  private url:string='http://localhost/crm_remonte/';
-  private header :HttpHeaders;
-  constructor(private http:HttpClient) {
-    this.header = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-   }
+  private headers=new Headers();
+  public datas:any;
 
-  
-  public callPeriodicHandler(): Promise<any>{
-    let params="requestParam="+(new Date()).toString();
-    let link=this.url+"/periodicHandler.php";
-    return this.http.post(link,params,{headers:this.header}).toPromise().then( res => {console.log(res); return res} ).catch(error => {console.log(error); return 'bad' });
+  public alert(): Promise<any>{
+    //let params="requestParam="+(new Date()).toString();
+    let link=this.url+"periodicHandler.php";
+    
+    return this.http.post(link,null,{headers:this.headers}).toPromise().then( res => {console.log(res);return res} ).catch(error => {console.log(error);return 'bad' });
   }
 
-  public remonter(id,numFile,reponse,message,operateur,phone): Promise<any>{
+  public remonter(id): Promise<any>{
     //let params="id="+id;
-    let data = JSON.stringify({id:id,numFile:numFile,reponse:reponse,message:message,operateur:operateur,phone:phone});
+    let data = JSON.stringify({id:id});
     let params ='param='+data;
     let link=this.url+"/remonter.php";
-    return this.http.post(link,params,{headers:this.header}).toPromise().then( res => {console.log(res);return res} ).catch(error => {console.log(error);return 'bad' });
+    return this.http.post(link,params,{headers:this.headers}).toPromise().then( res => {console.log(res);return res} ).catch(error => {console.log(error);return 'bad' });
   }
- 
 
 }

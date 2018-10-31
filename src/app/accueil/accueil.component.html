@@ -1,122 +1,93 @@
 <p></p>
 <div class="container col-md-12">
     <div class="panel panel-info">
-        <div class="panel panel-heading"> <marquee><h1>GESTION DES REMONTEES</h1></marquee></div>
+        <div class="panel panel-heading"><h1>GESTION DES ABONNEMENTS CANAL +</h1></div>
         <div class="panel panel-body">
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Opérateur</th>
-                  <th scope="col">Service</th>
-                  <th scope="col">Info Client</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prenom</th>
+                  <th scope="col">Téléphone</th>
+                  <th scope="col">Num Découdeur</th>
+                  <th scope="col">Formule</th>
+                  <th scope="col">Nombre mois</th>
                   <th scope="col">Montant</th>
                   <th scope="col">Date opération</th>
                   <th scope="col">Option</th>
                 </tr>
               </thead>
               <tbody>
-                     <tr *ngFor="let l of listRemonte; let i=index">
-                            <td  *ngIf="l.handled == 0"><strong>{{l.id}}</strong></td>
-                            <td  *ngIf="l.handled == 0"><strong>{{l.phone}}</strong></td>
-                            <td  *ngIf="l.handled == 0" ><strong> {{l.service}}</strong></td>
-                            <td *ngIf="l.service == 'orange money' && l.handled == 0"><strong *ngIf="getInfo(l,'requete')=='1'"> depot</strong><strong *ngIf="getInfo(l,'requete')=='2'">retrait</strong><strong *ngIf="getInfo(l,'requete')=='3'">retrait avec code</strong></td>
-
-                            <td *ngIf="l.service == 'tigo cash' && l.handled == 0"><strong *ngIf="getInfo(l,'requete')=='2'"> depot</strong><strong *ngIf="getInfo(l,'requete')=='3'">retrait</strong><strong *ngIf="getInfo(l,'requete')=='4'">retrait avec code</strong></td>
-
-                            <td *ngIf="l.service == 'AirTime-Tigo' && l.handled == 0"><strong > {{getInfo(l,'requete')}}</strong></td>
-                            <td *ngIf="l.service == 'AirTime-Orange' && l.handled == 0"><strong > {{getInfo(l,'requete')}}</strong></td>
-                           <!--wizall-->
-                           <td *ngIf="l.service == 'wizall' && l.handled == 0"><strong > {{getInfo(l,'service')}}</strong></td>
-                            <!--wizall-->
-                           <td *ngIf="l.service == 'emoney' && l.handled == 0"><strong > {{getInfo(l,'service')}}</strong></td>
-
-                            <td *ngIf=" l.service == 'AirTime-Orange' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
-                            <td *ngIf=" l.service == 'AirTime-Orange' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-
-                            <td *ngIf=" l.service == 'AirTime-Tigo' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
-                            <td *ngIf=" l.service == 'AirTime-Tigo' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-
-                            <td *ngIf=" l.service == 'AirTime-Expresso' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
-                            <td *ngIf=" l.service == 'AirTime-Expresso' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-                            <!--wizall-->
-                            <td *ngIf=" l.service == 'wizall' && l.handled == 0"><strong>{{getInfo(l,"infoClient")}}</strong></td>
-                            <td *ngIf=" l.service == 'wizall' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-                            <!--emoney-->
-                            <td *ngIf=" l.service == 'emoney' && l.handled == 0"><strong>{{getInfo(l,"infoClient")}}</strong></td>
-                            <td *ngIf=" l.service == 'emoney' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-                            
-                            <td *ngIf="getInfo(l,'requete')=='1' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
-                            <td *ngIf="getInfo(l,'requete')=='1' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-                           
-                            <td *ngIf="getInfo(l,'requete')=='2' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
-                            <td *ngIf="getInfo(l,'requete')=='2' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-                           
-                            <td *ngIf="getInfo(l,'requete')=='3' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
-                            <td *ngIf="getInfo(l,'requete')=='3' && l.service == 'orange money' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-
-
-                            <td *ngIf="getInfo(l,'requete')=='2' && l.service == 'tigo cash' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
-                            <td *ngIf="getInfo(l,'requete')=='2' && l.service == 'tigo cash' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-                            
-
-                            <td *ngIf="getInfo(l,'requete')=='3' && l.service == 'tigo cash' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
-                            <td *ngIf="getInfo(l,'requete')=='3' && l.service == 'tigo cash' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-
-
-                            <td *ngIf="getInfo(l,'requete')=='4' && l.service == 'tigo cash' && l.handled == 0"><strong>{{getInfo(l,"numero")}}</strong></td>
-                            <td *ngIf="getInfo(l,'requete')=='4' && l.service == 'tigo cash' && l.handled == 0"><strong>{{getInfo(l,"montant")}}</strong></td>
-
-                            <td  *ngIf="l.handled == 0"><strong> {{l.dateOp}}</strong></td>
-                            <td *ngIf="l.handled == 0" ><a  class="btn btn-primary"  (click)="getId(i);openModal(template)" style="margin-left: 5%;cursor: pointer;"  title="Traiter" ><strong style="color: white"> Traiter</strong></a>
-                            </td>
+                     <tr *ngFor="let l of listeAlert; let i=index">
+                      <td *ngIf="l.activer == 0"><strong *ngIf="getInfo1(l.requete,'requete') == 1" >Réabonnement</strong> <strong *ngIf="getInfo1(l.requete,'requete') == 2" >Recrutement</strong></td>
+                      <td *ngIf="l.activer == 0"><strong>{{getInfo1(l.requete,'nom')}}</strong></td>
+                      <td *ngIf="l.activer == 0"><strong>{{getInfo1(l.requete,'prenom')}}</strong></td>
+                      <td *ngIf="l.activer == 0"><strong>{{getInfo1(l.requete,'tel')}}</strong></td>
+                      <td *ngIf="l.activer == 0"><strong>{{getInfo1(l.requete,'NumDecoudeur')}}</strong></td>
+                      <td *ngIf="l.activer == 0"><strong>{{getInfo1(l.requete,'Formule')}}</strong></td>
+                      <td *ngIf="l.activer == 0"><strong>{{getInfo1(l.requete,'nombreMois')}}</strong></td>
+                      <td *ngIf="l.activer == 0"><strong>{{getInfo1(l.requete,'prix')}}</strong></td>
+                      <td *ngIf="l.activer == 0"><strong>{{l.date}}</strong></td>
+                      <td *ngIf="l.activer == 0"><a class="btn btn-success btn-sm" (click)="getAbonnement(i);openModal(template)" style="color: white;cursor: pointer;">Traiter</a> </td>
+                    </tr>
                   </tbody>
-                       
               </table>
-              
         </div>
-        <ng-template #template>
-            <div class="modal-header">
-              <h4 class="modal-title pull-left">Gestion remonte</h4>
-              <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div>
-                   <form  #patientForm="ngForm">
-                      <div class="form-group">
-                          
-                          <ul class="list-group">
-                             <strong>Numero</strong> <li class="list-group-item">{{numeroTraiter}}</li>
-                             <strong>Montant</strong> <li class="list-group-item">{{montantTraiter}}</li>
-                             <strong>date Operation</strong> <li class="list-group-item">{{dateOp}}</li>
-                          </ul>
-                         <label class="control-label">Reponse</label>
-                         <select class="form-control" type="text" name="reponse" required
-                         [(ngModel)]="reponse"
-                         #name="ngModel"> 
-                            <option value="">---------Selectionné--------</option>
-                            <option *ngFor="let c of Result" >{{c.etat}}</option>
-                        </select> 
-                        <div *ngIf="reponse =='Echec'">
-                                <label class="control-label">Message</label>
-                                <select class="form-control" type="text" name="message" required
-                                [(ngModel)]="message"
-                                #name="ngModel"> 
-                                   <option value="">---------Selectionné--------</option>
-                                   <option *ngFor="let c of Echec" >{{c.info}}</option>
-                               </select> 
-                            </div>   
-                      </div>
-                     <p></p>
-                     <div class="form-group">
-                       <input type="submit" class="btn btn-success" value="" (click)="remonter(listRemonte.id);modalRef.hide()" value="Valider">
-                      </div>
-                    </form>
-              </div>
-            </div>
-          </ng-template>
     </div>
 </div>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Gestion Canal</h4>
+      <h5></h5>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+            <div class="form-group" >
+                <div *ngIf="requete == 1">
+                <ul class="list-group">
+                    <li class="list-group-item" ><h4 style="text-transform: uppercase;color: #36a9e0;font-size: -webkit-xxx-large;">Réabonnement</h4></li>
+                    <li class="list-group-item"><strong>Nom : {{getInfo1(this.abonnementChoisie.requete,"nom")}}</strong></li>
+                    <li class="list-group-item"><strong>Prenom : {{getInfo1(this.abonnementChoisie.requete,"prenom")}}</strong></li>
+                    <li class="list-group-item"><strong>Numéro Abonner : {{getInfo1(this.abonnementChoisie.requete,"NumAbonner")}}</strong></li>
+                    <li class="list-group-item"><strong>Téléphone : {{getInfo1(this.abonnementChoisie.requete,"tel")}}</strong></li>
+                    <li class="list-group-item"><strong>Numéro Découdeur : {{getInfo1(this.abonnementChoisie.requete,"NumDecoudeur")}}</strong></li>
+                    <li class="list-group-item"><strong>Numéro carte : {{getInfo1(this.abonnementChoisie.requete,"numCarte")}}</strong></li>
+                    <li class="list-group-item"><strong>Formule : {{getInfo1(this.abonnementChoisie.requete,"Formule")}}</strong></li>
+                    <li class="list-group-item"><strong>prix : {{getInfo1(this.abonnementChoisie.requete,"prix")}}</strong></li>
+                    <li class="list-group-item"><strong>Nombre de mois : {{getInfo1(this.abonnementChoisie.requete,"nombreMois")}}</strong></li>
+                    <li class="list-group-item"><strong>Offre opetionnelle : {{getInfo1(this.abonnementChoisie.requete,"charme")}} {{getInfo1(this.abonnementChoisie.requete,"pvr")}} {{getInfo1(this.abonnementChoisie.requete,"deuxiemeEcran")}}</strong></li>
+
+                </ul>
+              </div>
+
+              <div *ngIf="requete == 2">
+                  <ul class="list-group">
+                      <li class="list-group-item" ><h4 style="text-transform: uppercase;color: #36a9e0;font-size: -webkit-xxx-large;">Recrutement</h4></li>
+                      <li class="list-group-item"><strong>Titre : {{getInfo1(this.abonnementChoisie.requete,"titre")}}</strong></li>
+                      <li class="list-group-item"><strong>Nom : {{getInfo1(this.abonnementChoisie.requete,"nom")}}</strong></li>
+                      <li class="list-group-item"><strong>Prenom : {{getInfo1(this.abonnementChoisie.requete,"prenom")}}</strong></li>
+                      <li class="list-group-item"><strong>CNI : {{getInfo1(this.abonnementChoisie.requete,"cni")}}</strong></li>
+                      <li class="list-group-item"><strong>Ville : {{getInfo1(this.abonnementChoisie.requete,"ville")}}</strong></li>
+                      <li class="list-group-item"><strong>Adresse : {{getInfo1(this.abonnementChoisie.requete,"adresse")}}</strong></li>
+                      <li class="list-group-item"><strong>E-mail : {{getInfo1(this.abonnementChoisie.requete,"email")}}</strong></li>
+                      <li class="list-group-item"><strong>Téléphone : {{getInfo1(this.abonnementChoisie.requete,"tel")}}</strong></li>
+                      <li class="list-group-item"><strong>Numéro Découdeur : {{getInfo1(this.abonnementChoisie.requete,"NumDecoudeur")}}</strong></li>
+                      <li class="list-group-item"><strong>Formule : {{getInfo1(this.abonnementChoisie.requete,"Formule")}}</strong></li>
+                      <li class="list-group-item"><strong>prix : {{getInfo1(this.abonnementChoisie.requete,"prix")}}</strong></li>
+                      <li class="list-group-item"><strong>Nombre de mois : {{getInfo1(this.abonnementChoisie.requete,"nombreMois")}}</strong></li>
+                      <li class="list-group-item"><strong>Offre opetionnelle : {{getInfo1(this.abonnementChoisie.requete,"charme")}} {{getInfo1(this.abonnementChoisie.requete,"pvr")}} {{getInfo1(this.abonnementChoisie.requete,"deuxiemeEcran")}}</strong></li>
+  
+                  </ul>
+                </div>
+           <div class="form-group">
+             <input type="submit" class="btn btn-success" value="" (click)="abonner(abonnementChoisie.id);modalRef.hide()" value="Valider">
+          </div>
+        </div>
+        
+
+    </div>
+  </ng-template>

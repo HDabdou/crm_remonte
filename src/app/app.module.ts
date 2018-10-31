@@ -8,6 +8,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { AccueilComponent } from './accueil/accueil.component';
 import { HandlerService } from './service/handler.service';
 import { HttpClientModule} from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 const routes:Routes=[  {path:'accueil', component:AccueilComponent},
   {path:'login', component:ConnexionComponent},
@@ -25,6 +26,7 @@ const routes:Routes=[  {path:'accueil', component:AccueilComponent},
     RouterModule.forRoot(routes),
     ModalModule.forRoot(),
     HttpClientModule,
+    HttpModule,
   ],
   providers: [
     HandlerService,
