@@ -60,10 +60,8 @@
                     <li class="list-group-item"><strong>prix : {{getInfo1(this.abonnementChoisie.requete,"prix")}}</strong></li>
                     <li class="list-group-item"><strong>Nombre de mois : {{getInfo1(this.abonnementChoisie.requete,"nombreMois")}}</strong></li>
                     <li class="list-group-item"><strong>Offre opetionnelle : {{getInfo1(this.abonnementChoisie.requete,"charme")}} {{getInfo1(this.abonnementChoisie.requete,"pvr")}} {{getInfo1(this.abonnementChoisie.requete,"deuxiemeEcran")}}</strong></li>
-
                 </ul>
               </div>
-
               <div *ngIf="requete == 2">
                   <ul class="list-group">
                       <li class="list-group-item" ><h4 style="text-transform: uppercase;color: #36a9e0;font-size: -webkit-xxx-large;">Recrutement</h4></li>
@@ -80,14 +78,11 @@
                       <li class="list-group-item"><strong>prix : {{getInfo1(this.abonnementChoisie.requete,"prix")}}</strong></li>
                       <li class="list-group-item"><strong>Nombre de mois : {{getInfo1(this.abonnementChoisie.requete,"nombreMois")}}</strong></li>
                       <li class="list-group-item"><strong>Offre opetionnelle : {{getInfo1(this.abonnementChoisie.requete,"charme")}} {{getInfo1(this.abonnementChoisie.requete,"pvr")}} {{getInfo1(this.abonnementChoisie.requete,"deuxiemeEcran")}}</strong></li>
-  
                   </ul>
                 </div>
            <div class="form-group">
              <input type="submit" class="btn btn-success" value="" (click)="abonner(abonnementChoisie.id);modalRef.hide()" value="Valider">
           </div>
         </div>
-        
-
-    </div>
+      </div>
   </ng-template>
